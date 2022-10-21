@@ -1,0 +1,34 @@
+<html>
+    <head>
+        <style>
+            #main{
+                max-width:300px;
+                height:200px;
+                background-color:rgb(189, 145, 91);
+            }
+            #result{
+                position: relative;
+                left: 500px;
+                top: 20;
+            }
+            #heading{
+                position: relative;
+                left:90px;
+            }
+
+        </style>
+    </head>
+    <body id = 'main'>
+        <div style = "position:relative; left:200px; top:2px; color:rgb(22, 17, 17)"><h1 id="heading"><u>incident database</u></h1></div>
+
+        <form action="{{url_for('login')}}" method="post" id = "result">
+            <label for="user"></label>
+            <input type="text" id="firstname" name="fname" placeholder="firstname">
+            <label for="password"></label>
+            <input type="text" id="lastname" name="lname" placeholder="lastname">
+            <input type="submit" value="Done" name="action1"/>
+        </form>
+        
+    </body>
+
+</html>

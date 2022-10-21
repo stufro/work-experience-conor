@@ -1,0 +1,97 @@
+<!doctype html>
+{% extends "layout.html.j2" %}
+
+{% block content %}
+<style>
+    #button5 {
+    size:20cm;
+    background-color: rgb(240, 214, 214);
+    color: black;
+    border: 2px solid #6f6b6b;
+    }
+
+    #button5:hover {
+    background-color: #7db9e0;
+    color: white;
+    border:2px solid #020c31
+    }
+    #jumbotron{
+        left:500px;
+        background-color: #84230d;
+        border:3px solid rgba(134, 53, 19, 0.2)
+    }
+    #page{
+        background-color:#070100;
+    }
+    #database{
+        -webkit-text-fill-color: rgb(189, 92, 6);
+    }
+
+</style>
+<head>
+
+    <script>
+        function hide_show(database_used) {
+            var x = document.getElementById(database_used);
+            if (x.style.display === "none") {
+                x.style.display = "block";
+            } else {
+                x.style.display = "none";
+            }
+        }
+    </script>
+</head>
+<body id = page>
+    <div class="container" id = jumbotron>
+        <div class="jumbotron" id = jumbotron>
+            <h1><u>Global Incidents</u></h1>
+        </div>
+    <p>Find an exact location and its priority</p>
+    </div>
+    <div class = 'container'>
+        <form action = '/home' method = 'POST' id = 'formA'>
+            <input id="Priority_finder" type="text" name = "pri_input" placeholder="priority wanted">
+            <input id = "Country_finder" type="text" name = "cntry_input" placeholder = "country wanted">
+            <input id = "City_finder" type="text" name = "city_input" placeholder = "city wanted">
+            <button type = 'submit' class = "btn" id = "button5">search</button>
+            
+        </form>
+    </div>
+    <button onclick='hide_show("databaseA")' id="button5" class = "btn">Full Database</button>
+    <a href="https://www.bt.com/">
+        <button id="button5" class = "btn" >BT website</button>
+    </a>
+    <div class = 'container'>
+        <table class="table table-dark table-hover table-striped " id = "databaseA">
+            <thead>
+
+                <tr>
+                    <th><u>ID</u></th>
+                    <th><u>Title</u></th>
+                    <th><u>City</u></th>
+                    <th><u>country</u></th>
+                    <th><u>Priority</u></th>
+                    <th><u>Start time</u></th>
+                    <th><u>End time</u></th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for incident in incidents %}
+                <tr>
+                    <td>{{ incident.id}}</td>
+                    <td>{{ incident.title }}</td>
+                    <td>{{ incident.city }}</td>
+                    <td>{{incident.country}}</td>
+                    <td>{{incident.priority}}</td>
+                    <td>{{incident.start_time}}</td>
+                    <td>{{incident.end_time}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+
+        </table>
+    </div>
+    
+</body>
+{% endblock %}
